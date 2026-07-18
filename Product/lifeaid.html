@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script defer src="../script.js"></script>
 </head>
-<body class="project-page">
+<body class="project-page lifeaid-page">
 
 <!-- Navigation Bar -->
 <header class="navbar">
@@ -28,6 +28,12 @@
                 <li><a href="../product.html">Product</a></li>
                 <li><a href="../furniture.html">Furniture</a></li>
                 <li><a href="../about.html">About</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
             </ul>
         </nav>
     </div>
@@ -80,95 +86,175 @@
 
         <div class="narrow-container">
             <section class="project-description problem-header-section">
-                <div class="description-text">
-                    <h2 class="problem-headline">Severe anaphylaxis frequently requires repeat epinephrine</h2>
-                    <div class="text-grid-3">
-                        <div class="text-grid-item">
-                            <h3>Additional doses</h3>
-                            <p>Symptoms don't always stop after one injection.</p>
-                        </div>
-                        <div class="text-grid-item">
-                            <h3>Single-use devices</h3>
-                            <p>Each dose requires a new auto-injector.</p>
-                        </div>
-                        <div class="text-grid-item">
-                            <h3>Treatment interruption</h3>
-                            <p>Responders must stop to retrieve and open another device.</p>
-                        </div>
+                <h2 class="problem-headline">Severe anaphylaxis frequently requires repeat epinephrine</h2>
+                <div class="text-grid-3">
+                    <div class="text-grid-item">
+                        <h3>Additional doses</h3>
+                        <p>Symptoms don't always stop after one injection.</p>
+                    </div>
+                    <div class="text-grid-item">
+                        <h3>Single-use devices</h3>
+                        <p>Each dose requires a new auto-injector.</p>
+                    </div>
+                    <div class="text-grid-item">
+                        <h3>Treatment interruption</h3>
+                        <p>Responders must stop to retrieve and open another device.</p>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Section 2: Mechanism -->
+    <!-- Section 2: Impact & Seamless Sequential Delivery -->
     <div class="technical-block narrow-container">
+        <!-- Subsection: Impact -->
         <section class="project-description">
             <div class="description-inner">
                 <div class="description-text">
-                    <h2>Pneumatic Sequential Loading</h2>
-                    <p>A pneumatic, triple-cylinder system designed for seamless sequential delivery. After an injection, the user replaces the needle cap and turns the Rotary Grip clockwise until it clicks. This tactile and audible feedback confirms the next cartridge is aligned and ready for deployment.</p>
+                    <h2>Impact</h2>
+                    <p>Keeps care continuous by delivering multiple doses without interruption, allowing responders to stay focused on patients, not devices.</p>
                 </div>
             </div>
         </section>
-        <section class="project-gallery">
-            <div class="gallery-item-full">
-                <img src="../assets/Lifeaid/3dexploded view of lifeaid.png" alt="LifeAid Exploded View">
+
+        <section class="side-visual-block">
+            <div class="side-visual-media">
+                <video autoplay loop muted playsinline>
+                    <source src="../assets/Lifeaid/Screen Recording 2026-01-02 at 11.20.32 PM.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="side-visual-content">
+                <div class="description-text">
+                    <h2>Seamless Sequential Delivery</h2>
+
+                    <div class="feature-item">
+                        <h3>Instant Response</h3>
+                        <p>First dose fires immediately for rapid action.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h3>Cartridge Reload</h3>
+                        <p>After each injection, replace the used needle cap. Then turn the Rotary Grip clockwise until it clicks and locks. The tactile and audible feedback confirms the next cartridge is ready.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h3>Fast Priming</h3>
+                        <p>After three doses, the actuator resets upward. Pump three times until it locks, then rotate to unlock and LifeAID is ready again.</p>
+                    </div>
+
+                    <p class="feature-footer-text">LifeAID's triple-cylinder system delivers uninterrupted, back-to-back doses, eliminating delays when every second matters.</p>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- Section 3: User Contexts -->
+    <!-- Section 3: Mechanism -->
+    <div class="technical-block narrow-container">
+        <!-- Full Bleed Video Section -->
+        <section class="project-gallery full-bleed">
+            <div class="gallery-item-full">
+                <div class="aspect-16-9">
+                    <video autoplay loop muted playsinline>
+                        <source src="../assets/Lifeaid/lifeaidcolorcorrectedmp4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subsection: Form -->
+        <section class="project-description" style="margin-top: 6rem;">
+            <div class="description-inner">
+                <div class="description-text">
+                    <h2>Form</h2>
+                    <p>The cylindrical body efficiently houses three rotating cartridges and keeps each dose aligned to the same injection point. The form is driven by tight internal packaging and consistent external usability.</p>
+                </div>
+            </div>
+        </section>
+        <section class="project-gallery full-bleed">
+            <div class="gallery-item-single">
+                <img src="../assets/Lifeaid/ChatGPT Image Jan 9, 2026, 05_56_40 PM.png" alt="LifeAid Prototype in Hand">
+            </div>
+            <div class="gallery-item-double">
+                <img src="../assets/Lifeaid/3dexploded view of lifeaid.png" alt="LifeAid Component Layout">
+            </div>
+        </section>
+    </div>
+
+    <!-- Section: User Research -->
     <div class="technical-block narrow-container">
         <section class="project-description">
             <div class="description-inner">
                 <div class="description-text">
-                    <h2>First Responder & Military CMF</h2>
-                    <p>The form is driven by tight internal packaging and external usability. High-visibility orange is utilized for first responders to ensure fast recognition in emergencies, while a low-visibility, durable CMF was developed for military squad leaders who must provide quick medical support to their teams.</p>
+                    <h2>User Interview</h2>
                 </div>
             </div>
         </section>
-        <section class="project-gallery">
-            <div class="gallery-item-full">
-                <img src="../assets/Lifeaid/Screenshot 2026-07-15 at 11.44.21 PM.png" alt="CMF Explorations">
+        <div class="user-research-grid">
+            <!-- User 1 -->
+            <div class="user-card">
+                <div class="user-image">
+                    <img src="../assets/Lifeaid/Screenshot 2026-07-15 at 11.43.08 PM.png" alt="User Research 1">
+                </div>
+                <div class="user-info">
+                    <strong>Doctor - Augir</strong>
+                    <p>"I’ve been in situations where a second dose was needed right away, but I only had single-use injectors available. When time matters, switching devices slows everything down."</p>
+                </div>
+            </div>
+            <!-- User 2 -->
+            <div class="user-card">
+                <div class="user-image">
+                    <img src="../assets/Lifeaid/Screenshot 2026-07-15 at 11.44.21 PM.png" alt="User Research 2">
+                </div>
+                <div class="user-info">
+                    <strong>Medic - Pacheco</strong>
+                    <p>"In the field, I can’t sort through gear. If a patient needs more than one injection, I want to perform it quickly without searching for spares."</p>
+                </div>
+            </div>
+            <!-- User 3 -->
+            <div class="user-card">
+                <div class="user-image">
+                    <img src="../assets/Lifeaid/Screenshot 2026-07-15 at 11.44.30 PM.png" alt="User Research 3">
+                </div>
+                <div class="user-info">
+                    <strong>Squad Leader - Contreras</strong>
+                    <p>"My biggest concern is making sure my team has enough medical support during an emergency. If more than one person needs treatment, single-use injectors disappear fast."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Process -->
+    <div class="technical-block narrow-container">
+        <section class="project-description">
+            <div class="description-inner">
+                <div class="description-text">
+                    <h2>Process</h2>
+                </div>
             </div>
         </section>
     </div>
 
     <!-- Final Gallery -->
-    <section class="project-gallery bottom-gallery">
-        <!-- Row 1: 16:9 -->
+    <section class="gallery-2-col full-bleed">
+        <!-- Top: One wide and short image -->
         <div class="gallery-item-full">
-            <div class="aspect-16-9">
-                <img src="../assets/Lifeaid/Screenshot 2026-07-15 at 11.43.08 PM.png" alt="LifeAid Environment Render">
+            <div class="aspect-panoramic">
+                <img src="../assets/Lifeaid/Screenshot 2025-01-28 at 2.12.38 AM.jpg" alt="Final Render Detail">
             </div>
         </div>
 
-        <!-- Row 2: 3 images (4:5) -->
-        <div class="gallery-item-single">
-            <div class="aspect-4-5">
-                <img src="../assets/Lifeaid/lifeaid Portrait 1.png" alt="LifeAid View 1">
+        <!-- Bottom: Two side-by-side landscape images -->
+        <div class="gallery-item-half">
+            <div class="aspect-landscape">
+                <img src="../assets/Lifeaid/Untitled_Artwork.png" alt="LifeAid Detail 1">
             </div>
         </div>
-        <div class="gallery-item-single">
-            <div class="aspect-4-5">
-                <img src="../assets/Lifeaid/lifeaid portrait secondary.png" alt="LifeAid View 2">
+        <div class="gallery-item-half">
+            <div class="aspect-landscape">
+                <img src="../assets/Lifeaid/Untitled_Artwork 7.jpg" alt="LifeAid Detail 2">
             </div>
-        </div>
-        <div class="gallery-item-single">
-            <div class="aspect-4-5">
-                <img src="../assets/Lifeaid/Untitled (2).jpg" alt="LifeAid View 3">
-            </div>
-        </div>
-
-        <!-- Row 3: 1 (4:5) + 1 (rest) -->
-        <div class="gallery-item-single">
-            <div class="aspect-4-5">
-                <img src="../assets/Lifeaid/Untitled_Artwork.png" alt="Process Sketch">
-            </div>
-        </div>
-        <div class="gallery-item-double">
-            <img src="../assets/Lifeaid/Untitled_Artwork 2.png" alt="Final Render Detail">
         </div>
     </section>
 </main>

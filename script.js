@@ -92,7 +92,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4.5 Pause Boghylde video on mobile
+    // 5. Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            let newTheme = theme === 'light' ? 'dark' : 'light';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
+    // 6. Pause Boghylde video on mobile
     const boghyldeVideo = document.querySelector('a[href*="boghylde"] video');
     if (boghyldeVideo && window.innerWidth <= 768) {
         boghyldeVideo.removeAttribute('autoplay');
