@@ -134,7 +134,8 @@ body {
 .hero-slideshow {
     width: 100%;
     padding: 0;
-    margin-bottom: 1rem; /* Space before the work section */
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 .slideshow-container {
@@ -268,13 +269,28 @@ body {
     .project-image-container {
         aspect-ratio: 4 / 5 !important; /* Force 4:5 ratio on mobile */
     }
+    .slideshow-container {
+        aspect-ratio: 16 / 9; /* Keep the exact 16:9 ratio on mobile too */
+    }
     .featured-double .project-image-container {
         height: auto;
+    }
+
+    /* Global Mobile Offset */
+    body {
+        padding-top: 100px !important;
     }
 
     /* Navbar Mobile Styles */
     .navbar {
         padding: 1.25rem var(--side-padding);
+        background-color: var(--bg-color); /* Make it solid on mobile to prevent burial */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .hero-slideshow {
+        margin-top: 0px !important; /* Force no overlap on mobile */
     }
 
     .logo a {
