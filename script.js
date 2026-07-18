@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(raf);
 
     // 1.2 Auto-scroll to align Project Hero bottom with screen bottom
-    // Only triggers on project pages (heropages), not on the homepage slideshow
+    // Triggers on project pages (heropages) for Desktop/Tablet only
     const projectHero = document.querySelector('.project-hero-image');
-    if (projectHero) {
+    if (projectHero && window.innerWidth > 768) {
         setTimeout(() => {
             const heroBottom = projectHero.getBoundingClientRect().bottom + window.scrollY;
             const target = heroBottom - window.innerHeight;
@@ -90,5 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             lenis.scrollTo(0);
         });
+    }
+
+    // 4.5 Pause Boghylde video on mobile
+    const boghyldeVideo = document.querySelector('a[href*="boghylde"] video');
+    if (boghyldeVideo && window.innerWidth <= 768) {
+        boghyldeVideo.removeAttribute('autoplay');
+        boghyldeVideo.pause();
     }
 });
