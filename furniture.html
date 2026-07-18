@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture | Junghyun Shin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="navbar">
+    <div class="navbar-inner">
+        <div class="logo">
+            <a href="index.html">Junghyun Shin</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index.html">Selected</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="furniture.html">Furniture</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Work Section -->
+<section id="work" class="work-section">
+    <h2>Furniture Design</h2>
+    <div class="project-grid">
+
+        <!-- 1. Boghylde (Double-wide Video Card) -->
+        <a href="Furniture/boghylde.html" class="project-card featured-double">
+            <div class="project-image-container">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/Boghylde/Boghylde chair render v3.81.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="project-info">
+                Boghylde
+                <span>Braceless Cantilever Chair • 2025</span>
+            </div>
+        </a>
+
+        <!-- 2. Cove (With Hover Reveal) -->
+        <a href="Furniture/cove.html" class="project-card hover-reveal">
+            <div class="project-image-container">
+                <!-- Primary View -->
+                <img src="assets/Cove/Cove%20Lounge%20Chair%20Hotel%20Render.jpeg" class="primary-image" alt="Cove Lounge Chair">
+                <!-- Secondary View (Revealed on Hover) -->
+                <img src="assets/Cove/Cove%20Chair%20Olive%20Green%20Close%20Up.jpeg" class="secondary-image" alt="Cove Lounge Chair Detail">
+            </div>
+            <div class="project-info">
+                Cove
+                <span>West Elm Lounge Chair • 2026</span>
+            </div>
+        </a>
+
+        <!-- 3. Panel -->
+        <a href="Furniture/panel.html" class="project-card">
+            <div class="project-image-container">
+                <img src="assets/Panel/panel chair render v3.png" alt="Panel Chair">
+            </div>
+            <div class="project-info">
+                Panel
+                <span>6 Hour Chair • 2025</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-info">
+            &copy; 2026 Junghyun Shin. All rights reserved.
+        </div>
+        <button id="back-to-top" class="back-to-top">
+            Back to Top
+            <span class="arrow">↑</span>
+        </button>
+        <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:yourgmail@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dune | Andrea Shin</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script defer src="../script.js"></script>
+</head>
+<body class="project-page">
+
+<!-- Navigation Bar -->
+<header class="navbar">
+    <div class="navbar-inner">
+        <div class="logo">
+            <a href="../index.html">Junghyun Shin</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="../index.html">Selected</a></li>
+                <li><a href="../product.html">Product</a></li>
+                <li><a href="../furniture.html">Furniture</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="project-hero-image">
+            <img src="../assets/Dune/speaker portfolio1 .jpg" alt="Dune Speaker Hero">
+        </div>
+        <div class="project-header">
+            <h1>Dune</h1>
+            <p class="subtitle">Can FDM lead to a better speaker?</p>
+        </div>
+    </section>
+
+    <!-- Project Description -->
+    <section class="project-description">
+        <div class="description-inner">
+            <div class="description-text">
+                <p>Conventional speakers are fundamentally limited by flat wooden panels. These parallel walls bounce sound back and forth like shouting down a hallway, creating muddy distortion. To see if FDM 3D printing could outperform this traditional design, I utilized additive manufacturing freedom to replace flat panels with organic, acoustically optimized curves. Backed by material testing, this project proves that printed geometry can structurally, technically, and aesthetically surpass conventional wood.</p>
+            </div>
+            <div class="description-details">
+                <div class="detail-item">
+                    <p><strong>Category</strong> Audio</p>
+                </div>
+                <div class="detail-item">
+                    <p><strong>Date</strong> 2026</p>
+                </div>
+                <div class="detail-item">
+                    <p><strong>Duration</strong> 5 Weeks</p>
+                </div>
+                <div class="detail-item">
+                    <p><strong>Skills</strong> Prototyping, Rhino, Keyshot, Acoustics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Intro -->
+    <section class="project-gallery full-bleed">
+        <div class="gallery-item-full">
+            <div class="aspect-16-9">
+                <img src="../assets/Dune/2K_speaker keyshot scene.png" alt="Dune Environment Scene">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Teardown -->
+    <div class="technical-block narrow-container">
+        <section class="project-description">
+            <div class="description-inner">
+                <div class="description-text">
+                    <h2>Teardown of the Control Group</h2>
+                    <p>I disassembled the benchmark speaker to audit its internal architecture. Harvested electronics were treated as a strict scientific control group. Transplanting these identical components isolated cabinet geometry as the single performance variable, proving that the acoustic leap was achieved entirely by my structural architecture rather than a hardware upgrade.</p>
+                </div>
+            </div>
+        </section>
+        <section class="project-gallery">
+            <div class="gallery-item-full">
+                <img src="../assets/Dune/Edifier Teardown.png" alt="Teardown of the Control Group">
+            </div>
+        </section>
+    </div>
+
+    <!-- Section 2: Material Testing -->
+    <div class="technical-block narrow-container">
+        <section class="project-description">
+            <div class="description-inner">
+                <div class="description-text">
+                    <h2>The more inert the better</h2>
+                    <p>To find an acoustically inert enclosure substrate, I used a custom-engineered impact rig. By dropping a steel pellet from a fixed height onto the center of each suspended material block, I delivered an identical mechanical impulse to every sample. I recorded the resulting frequency decay using Room EQ Wizard (REW) to measure exactly how fast each polymer naturally silenced itself.</p>
+                </div>
+            </div>
+        </section>
+        <section class="project-gallery">
+            <div class="gallery-item-full">
+                <img src="../assets/Dune/Dune Filament Testing.png" alt="Impact Rig Material Testing">
+                <div class="gallery-caption">
+                    <p><strong>The Infill Paradox:</strong> 30% gyroid infill was the most acoustically inert. Its open internal geometry creates miniature air-damping chambers that absorb vibrations better than dense 40% or 50% + grids.</p>
+                    <p><strong>Walls Over Infill:</strong> Using 6 solid outer walls increases structural bending stiffness far more efficiently than packing the inside with heavy, high-density infill.</p>
+                    <p><strong>Optimal Substrate:</strong> ASA was chosen over PETG. While PETG absorbs impact vibrations well, its low flexural modulus allows the cabinet to flex under acoustic pressure. ASA’s rigid properties completely resist this flexing.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Section 3: Data Driven Design -->
+    <div class="technical-block narrow-container">
+        <section class="project-description">
+            <div class="description-inner">
+                <div class="description-text">
+                    <h2>Design Driven By Data</h2>
+                    <p>Material testing parameters directly dictated the product’s internal architecture. Developed in Rhino, this unified monocoque enclosure utilizes specific geometric features to completely eliminate parasitic resonances while maximizing acoustic performance.</p>
+                </div>
+            </div>
+        </section>
+        <section class="project-gallery">
+            <div class="gallery-item-full">
+                <img src="../assets/Dune/Screenshot 2026-07-08 at 11.21.03 PM.png" alt="Rhino Data Driven Architecture">
+                <div class="gallery-caption">
+                    <p><strong>Integrated Waveguide:</strong> Controls high-frequency dispersion and reduces harsh room reflections.</p>
+                    <p><strong>Non-Parallel Geometry:</strong> The sloped back wall entirely prevents internal standing waves and muddy mid-range resonance.</p>
+                    <p><strong>Isolated Tweeter Chamber:</strong> Protects the high-frequency driver from the intense back-pressure waves of the woofer.</p>
+                    <p><strong>Sandwich Wall Structure:</strong> 6 walls paired with a 30% gyroid core to maximize structural stiffness and eliminate panel flex.</p>
+                    <p><strong>Mathematically Flared Port:</strong> Extends low-frequency bass response while preventing aerodynamic wind noise (chuffing).</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Final Gallery -->
+    <section class="project-gallery bottom-gallery">
+        <!-- Row 1: 16:9 (Span 3) -->
+        <div class="gallery-item-full">
+            <div class="aspect-16-9">
+                <img src="../assets/Dune/2K_IMG_4214.png" alt="Dune Cinematic Render">
+            </div>
+        </div>
+
+        <!-- Row 2: 3 images (4:5) (Span 1 each) -->
+        <div class="gallery-item-single">
+            <div class="aspect-4-5">
+                <img src="../assets/Dune/Dune Portrait 1.jpeg" alt="Dune Portrait View 1">
+            </div>
+        </div>
+        <div class="gallery-item-single">
+            <div class="aspect-4-5">
+                <img src="../assets/Dune/Dune Portrait Secondary.jpg" alt="Dune Portrait View 2">
+            </div>
+        </div>
+        <div class="gallery-item-single">
+            <div class="aspect-4-5">
+                <img src="../assets/Dune/IMG_3341.JPG" alt="Dune Prototype Detail 1">
+            </div>
+        </div>
+
+        <!-- Row 3: 1 (4:5) (Span 1) + 1 (rest) (Span 2) -->
+        <div class="gallery-item-single">
+            <div class="aspect-4-5">
+                <img src="../assets/Dune/IMG_3347.JPG" alt="Dune Prototype Detail 2">
+            </div>
+        </div>
+        <div class="gallery-item-double">
+            <img src="../assets/Dune/speaker portfolio1 .jpg" alt="Dune Hero Detail">
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-info">
+            &copy; 2026 Junghyun Shin. All rights reserved.
+        </div>
+        <button id="back-to-top" class="back-to-top">
+            Back to Top
+            <span class="arrow">↑</span>
+        </button>
+        <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:yourgmail@gmail.com" aria-label="Email"><i class="far fa-envelope"></i></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
