@@ -83,7 +83,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 1rem var(--side-padding); /* Adjusted from 1.5rem to 1rem */
 }
@@ -154,7 +154,7 @@ body {
 
     /* Position outside the right edge of the nav links */
     position: absolute;
-    left: 100%;
+    left: 90%;
     margin-left: 3rem; /* Increase this to move it further right */
     top: 50%;
     transform: translateY(-50%);
@@ -251,7 +251,7 @@ body {
 
 .work-section h2,
 .project-grid {
-    max-width: 1700px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -332,15 +332,16 @@ body {
    6. RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
+    :root {
+        --side-padding: 30px;
+    }
+
     .project-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .featured-double {
         grid-column: span 2;
-    }
-    .hero-slideshow,
-    .project-hero-image {
-        top: 70px; /* Keep below navbar on tablet/mobile */
     }
 }
 
@@ -669,7 +670,7 @@ body {
 
 .technical-block .project-description {
     padding: 0; /* Let global centering handle this */
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .technical-block .project-gallery {
@@ -719,7 +720,7 @@ body {
 .project-description .description-inner,
 .user-research-grid,
 .expertise-container {
-    max-width: 1400px;           /* EDIT MAIN PAGE WIDTH HERE */
+    max-width: 1600px;           /* MATCHING MAIN GRID WIDTH */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -734,7 +735,7 @@ body {
 .technical-block .project-gallery:not(.full-bleed),
 .technical-block .gallery-grid,
 .technical-block .gallery-2-col {
-    max-width: 1300px;           /* EDIT PROCESS SECTION WIDTH HERE */
+    max-width: 1300px;           /* MATCHING MAIN GRID WIDTH */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -762,7 +763,7 @@ body {
 .project-description {
     width: 100%;
     margin: 0;
-    padding: 2rem 0 8rem;
+    padding: 1rem 0 8rem;
     position: relative;
     background-color: var(--bg-color);
 }
@@ -1153,7 +1154,7 @@ body {
 
     /* 1. MAIN TITLE */
     .project-header h1 {
-        font-size: 4rem;            /* Title Size */
+        font-size: 3.5rem;          /* Slightly smaller title for mobile */
         letter-spacing: -0.03rem;      /* Space between letters */
         margin-bottom: 0.5rem;      /* Space below title */
         line-height: 1.1;           /* Height of the lines */
@@ -1163,7 +1164,7 @@ body {
     .project-header .subtitle {
         font-size: 1.5rem;         /* Subtitle Size */
         letter-spacing: -0.03rem;       /* Space between letters */
-        padding-bottom: 3rem;        /* CHANGED FROM MARGIN TO PADDING to prevent transparent gaps */
+        padding-bottom: 1.5rem;      /* Reduced spacing between subtitle and paragraph */
         margin-bottom: 0;
         font-weight: 500;
     }
@@ -1188,7 +1189,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;               /* Space between meta rows */
-        margin-top: 5rem;           /* Gap above metadata block */
+        margin-top: 3rem;           /* Gap above metadata block (more than subtitle-to-paragraph) */
     }
 
     .detail-item p {
@@ -1238,12 +1239,12 @@ body {
     }
 
     .technical-block .project-gallery {
-        padding-bottom: 3rem;      /* GAP 2: Space between Image and the Paragraph below it */
+        padding-bottom: 0rem;      /* GAP 2: Space between Image and the Paragraph below it */
     }
 
     .technical-block {
-        padding-bottom: 6rem;        /* GAP 3: Space between major sections */
-        padding-top: 4rem;          /* GAP 4: Space above the Heading (from divider line) */
+        padding-bottom: 1rem;        /* GAP 3: Space between major sections */
+        padding-top: 3rem;          /* GAP 4: Space above the Heading (from divider line) */
     }
 }
 
