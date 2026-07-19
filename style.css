@@ -337,19 +337,19 @@ body {
 
     /* Global Mobile Offset */
     body {
-        padding-top: 100px !important;
+        padding-top: 70px !important; /* Reduced to match smaller navbar */
     }
 
     /* Navbar Mobile Styles */
     .navbar {
-        padding: 0; /* Let inner handle padding for alignment */
-        background-color: var(--bg-color); /* Make it solid on mobile to prevent burial */
+        padding: 0;
+        background-color: var(--bg-color);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
 
     .navbar-inner {
-        padding: 1.25rem var(--side-padding); /* Match work-section alignment */
+        padding: 0.75rem var(--side-padding); /* Reduced from 1.25rem to keep it slim */
     }
 
     .hero-slideshow {
@@ -1108,6 +1108,10 @@ body {
     /* ---------------------------------------------------------
        PROJECT PAGE: LAYOUT & GALLERIES
        --------------------------------------------------------- */
+    .project-header {
+        margin-top: 1.5rem;         /* SPACE BETWEEN HERO IMAGE & TITLE */
+    }
+
     .description-inner {
         display: block;
         gap: 0;
@@ -1122,18 +1126,18 @@ body {
     .text-grid-3,
     .side-visual-block {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 30px;                  /* SPACE BETWEEN IMAGES IN A GRID */
     }
     .project-hero-image {
         aspect-ratio: 16 / 10;
         height: auto;
     }
     .project-description {
-        margin-bottom: 6rem;
+        margin-bottom: 4rem;        /* SPACE BETWEEN TEXT & IMAGES (Below paragraphs) */
     }
     .technical-block {
-        margin-bottom: 6rem;
-        padding-top: 4rem;
+        margin-bottom: 5rem;        /* SPACE BETWEEN MAJOR SECTIONS */
+        padding-top: 3rem;          /* SPACE ABOVE SECTION DIVIDER LINE */
     }
 }
 
