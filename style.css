@@ -1084,6 +1084,13 @@ body {
         margin-bottom: 1.5rem;      /* Space between paragraphs */
     }
 
+    /* 3.5 PROCESS HEADERS (e.g. "Design Driven By Data") */
+    .description-text h2 {
+        font-size: 1.75rem;         /* Process Header Size */
+        letter-spacing: -0.02rem;
+        margin-bottom: 1rem;
+    }
+
     /* 4. METADATA (Role, Timeline, etc.) */
     .description-details {
         display: flex;
@@ -1109,7 +1116,7 @@ body {
        PROJECT PAGE: LAYOUT & GALLERIES
        --------------------------------------------------------- */
     .project-header {
-        margin-top: 1.5rem;         /* SPACE BETWEEN HERO IMAGE & TITLE */
+        margin-top: 2rem;         /* SPACE BETWEEN HERO IMAGE & TITLE */
     }
 
     .description-inner {
@@ -1133,11 +1140,16 @@ body {
         height: auto;
     }
     .project-description {
-        margin-bottom: 4rem;        /* SPACE BETWEEN TEXT & IMAGES (Below paragraphs) */
+        margin-bottom: 2.5rem;      /* GAP 1: Space below Heading AND below Paragraph */
     }
+
+    .technical-block .project-gallery {
+        margin-bottom: 2rem;      /* GAP 2: Space between Image and the Paragraph below it */
+    }
+
     .technical-block {
-        margin-bottom: 5rem;        /* SPACE BETWEEN MAJOR SECTIONS */
-        padding-top: 3rem;          /* SPACE ABOVE SECTION DIVIDER LINE */
+        margin-bottom: 5rem;        /* GAP 3: Space between major sections */
+        padding-top: 3rem;          /* GAP 4: Space above the Heading (from divider line) */
     }
 }
 
