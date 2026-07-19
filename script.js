@@ -37,10 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1.5 Header scroll behavior (Hide on scroll down, show on scroll up)
     const navbar = document.querySelector('.navbar');
+    const projectHeader = document.querySelector('.project-header');
+    const workSection = document.querySelector('.work-section');
     let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        const isMobileOrTablet = window.innerWidth <= 1024;
+        let canHide = true;
+
+        if (isMobileOrTablet) {
+            // On mobile/tablet, don't hide navbar until content reaches it
+            const triggerElement = projectHeader || workSection;
+            if (triggerElement) {
+                const rect = triggerElement.getBoundingClientRect();
+                if (rect.top > 70) {
+                    canHide = false;
+                }
+            }
+        }
+
+        if (window.scrollY > lastScrollY && window.scrollY > 100 && canHide) {
             // Scrolling down
             navbar.classList.add('nav-hidden');
         } else {
