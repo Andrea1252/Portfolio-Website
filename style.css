@@ -779,18 +779,23 @@ body {
 }
 
 .context-title-group h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: -1rem;
     color: var(--text-primary);
     letter-spacing: -0.01em;
 }
 
-.context-title-group p {
+.context-title-group p,
+.context-description-bottom p {
     font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    max-width: 700px;
+    max-width: 1300px;
+}
+
+.context-description-bottom {
+    margin-top: 1rem;
 }
 
 .context-logo {
