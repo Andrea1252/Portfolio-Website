@@ -37,6 +37,11 @@ html.lenis body {
     box-sizing: border-box;
 }
 
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 :root {
     --bg-color: #fafafa;
     --text-primary: #111111;
@@ -345,105 +350,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    /* ---------------------------------------------------------
-       MOBILE WHITE SPACE & LAYOUT
-       --------------------------------------------------------- */
-    :root {
-        /* SIDE MARGINS: Increase this for more white space on the left/right */
-        --side-padding: 30px;
-    }
 
-    .project-grid {
-        grid-template-columns: 1fr;
-        /* VERTICAL SPACE: Space between project cards on the home page */
-        gap: 4rem;
-    }
-    .featured-double {
-        grid-column: span 1;
-    }
-    .project-image-container {
-        aspect-ratio: 4 / 5 !important; /* Force 4:5 ratio on mobile */
-    }
-    .slideshow-container {
-        aspect-ratio: 16 / 10; /* Changed to 16:10 ratio on mobile */
-    }
-    .featured-double .project-image-container {
-        height: auto;
-    }
-
-    /* Global Mobile Offset */
-    body {
-        padding-top: 70px !important; /* Reduced to match smaller navbar */
-    }
-
-    /* Navbar Mobile Styles */
-    .navbar {
-        padding: 0;
-        background-color: var(--bg-color);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-    }
-
-    .navbar-inner {
-        padding: 0.75rem var(--side-padding); /* Reduced from 1.25rem to keep it slim */
-    }
-
-    .hero-slideshow {
-        margin-top: 0px !important; /* Force no overlap on mobile */
-    }
-
-    .logo a {
-        font-size: 1.5rem;
-    }
-
-    .menu-toggle {
-        display: flex;
-        z-index: 101;
-    }
-
-    /* Animation for hamburger to X */
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        height: 100vh;
-        background-color: var(--bg-color);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.4s ease;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-        z-index: 100;
-    }
-
-    .nav-menu.active {
-        right: 0;
-    }
-
-    .navbar nav ul {
-        flex-direction: column;
-        gap: 3rem;
-        align-items: center;
-    }
-
-    .navbar nav a {
-        font-size: 1.5rem;
-        color: var(--text-primary);
-    }
-}
 
 /* ==========================================================================
    7. ABOUT PAGE & HOVER EFFECTS
@@ -524,14 +431,7 @@ body {
     margin-bottom: 0.75rem;
 }
 
-@media (max-width: 768px) {
-    .expertise-list {
-        max-width: 100%;
-    }
-    .expertise-list li {
-        font-size: 2rem;
-    }
-}
+
 
 .project-card img.primary-image {
     position: relative;
@@ -789,28 +689,7 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .context-header {
-        margin-bottom: 2.5rem;
-    }
 
-    .context-title-group h2 {
-        font-size: 1.5rem;
-    }
-
-    .context-title-group h3 {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
-
-    .context-block {
-        padding: 4rem var(--side-padding);
-    }
-
-    .context-main-image {
-        aspect-ratio: 16 / 9; /* Taller on mobile so you can actually see the image */
-    }
-}
 
 /* 1. MAIN INTRO WIDTH (Title, Subtitle, Paragraph, Metadata, Expertise) */
 .project-header h1,
@@ -1246,104 +1125,21 @@ body {
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    /* ---------------------------------------------------------
-       PROJECT PAGE: TITLE, SUBTITLE, BODY & METADATA
-       --------------------------------------------------------- */
-
-    /* 1. MAIN TITLE */
-    .project-header h1 {
-        font-size: 3.5rem;          /* Slightly smaller title for mobile */
-        letter-spacing: -0.03rem;      /* Space between letters */
-        margin-bottom: 0.5rem;      /* Space below title */
-        line-height: 1.1;           /* Height of the lines */
+    .objective-section {
+        padding: 6rem var(--side-padding);
     }
 
-    /* 2. SUBTITLE */
-    .project-header .subtitle {
-        font-size: 1.5rem;         /* Subtitle Size */
-        letter-spacing: -0.03rem;       /* Space between letters */
-        padding-bottom: 1.5rem;      /* Reduced spacing between subtitle and paragraph */
-        margin-bottom: 0;
-        font-weight: 500;
+    .objective-section p {
+        font-size: 1.5rem;
     }
 
-    /* 3. BODY PARAGRAPH */
-    .description-text p {
-        font-size: 1rem;          /* Paragraph Size */
-        letter-spacing: -0.03rem;       /* Space between letters */
-        line-height: 1.6;           /* Space between lines */
-        margin-bottom: 1.5rem;      /* Space between paragraphs */
+    .expandable-process-wrapper {
+        padding-bottom: 6rem;
     }
 
-    /* 3.5 PROCESS HEADERS (e.g. "Design Driven By Data") */
-    .description-text h2 {
-        font-size: 1.75rem;         /* Process Header Size */
-        letter-spacing: -0.02rem;
-        margin-bottom: 1rem;
-    }
-
-    /* 4. METADATA (Role, Timeline, etc.) */
-    .description-details {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;               /* Space between meta rows */
-        margin-top: 3rem;           /* Gap above metadata block (more than subtitle-to-paragraph) */
-    }
-
-    .detail-item p {
-        font-size: 1rem;            /* Meta Text Size */
-        letter-spacing: -0.03rem;
-        line-height: 1.4;
-        white-space: normal;        /* Allow text to wrap on small screens */
-    }
-
-    .detail-item p strong {
-        width: 100px;               /* Width of the label (e.g., 'ROLE') */
-        font-size: 1rem;          /* Label Size */
-        letter-spacing: -0.03rem;    /* Label Letter Spacing */
-    }
-
-    /* ---------------------------------------------------------
-       PROJECT PAGE: LAYOUT & GALLERIES
-       --------------------------------------------------------- */
-    .project-header {
-        padding-top: 4rem;         /* Space between Hero Image and Title */
-    }
-
-    .description-inner {
-        display: block;
-        gap: 0;
-    }
-    .description-text, .description-details {
-        width: 100%;
-    }
-    .gallery-grid,
-    .gallery-2-col,
-    .project-gallery,
-    .gallery-row-3,
-    .gallery-row-mixed,
-    .user-research-grid,
-    .text-grid-3,
-    .side-visual-block {
-        grid-template-columns: 1fr;
-        gap: 30px;                  /* SPACE BETWEEN IMAGES IN A GRID */
-    }
-    .project-hero-image {
-        aspect-ratio: 16 / 10;
-        height: auto;
-    }
-    .project-description {
-        padding-bottom: 3rem;      /* Use padding instead of margin */
-    }
-
-    .technical-block .project-gallery {
-        padding-bottom: 0rem;      /* GAP 2: Space between Image and the Paragraph below it */
-    }
-
-    .technical-block {
-        padding-bottom: 1rem;        /* GAP 3: Space between major sections */
-        padding-top: 3rem;          /* GAP 4: Space above the Heading (from divider line) */
+    .preview-images img {
+        width: 120px;
+        height: 160px;
     }
 }
 
@@ -1596,15 +1392,4 @@ body {
     opacity: 0.6;
 }
 
-@media (max-width: 768px) {
-    .footer-inner {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 2rem;
-        text-align: center;
-    }
 
-    .footer-socials {
-        justify-content: center;
-    }
-}
