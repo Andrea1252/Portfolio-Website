@@ -806,6 +806,10 @@ body {
     .context-block {
         padding: 4rem var(--side-padding);
     }
+
+    .context-main-image {
+        aspect-ratio: 16 / 9; /* Taller on mobile so you can actually see the image */
+    }
 }
 
 /* 1. MAIN INTRO WIDTH (Title, Subtitle, Paragraph, Metadata, Expertise) */
