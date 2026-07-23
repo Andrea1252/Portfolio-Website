@@ -1271,14 +1271,21 @@ body {
     object-fit: cover;
 }
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    gap: 5mm;
-    width: 100%;
-    margin: 0 auto;
-}
+    .gallery-grid,
+    .gallery-2-col,
+    .project-gallery,
+    .gallery-row-3,
+    .gallery-row-mixed,
+    .user-research-grid,
+    .text-grid-3,
+    .side-visual-block,
+    .centered-image-section,
+    .problem-header-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 
 @media (max-width: 768px) {
     /* ---------------------------------------------------------
@@ -1359,9 +1366,15 @@ body {
     .gallery-row-mixed,
     .user-research-grid,
     .text-grid-3,
-    .side-visual-block {
+    .side-visual-block,
+    .centered-image-section,
+    .problem-header-section {
         grid-template-columns: 1fr;
         gap: 30px;                  /* SPACE BETWEEN IMAGES IN A GRID */
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: var(--side-padding) !important;
+        padding-right: var(--side-padding) !important;
     }
     .project-hero-image {
         aspect-ratio: 16 / 10;
@@ -1385,7 +1398,7 @@ body {
 .objective-section {
     width: 100%;
     background-color: var(--bg-color);
-    padding: 10rem var(--side-padding);
+    padding: 2rem var(--side-padding);
     text-align: center;
     position: relative;
     z-index: 10;
@@ -1404,7 +1417,7 @@ body {
     margin-bottom: 2rem;
     display: inline-block;
     border-bottom: 2px solid var(--text-primary);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0rem;
 }
 
 .objective-section p {
@@ -1413,6 +1426,7 @@ body {
     line-height: 1.2;
     color: var(--text-primary);
     letter-spacing: -0.02em;
+
 }
 
 /* Expandable Process Section */
