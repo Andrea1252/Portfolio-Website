@@ -531,6 +531,35 @@ body {
     .expertise-list li {
         font-size: 2rem;
     }
+
+    /* About Page Mobile Fix */
+    .about-page-specific .about-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align everything to the left */
+        gap: 2rem;
+    }
+
+    .about-page-specific .about-text {
+        display: contents; /* Allows reordering of title and paragraph */
+    }
+
+    .about-page-specific .about-text h1 {
+        order: 1; /* Title first */
+        text-align: left;
+        margin-bottom: 0;
+        font-size: 2.5rem;
+    }
+
+    .about-page-specific .about-text p {
+        order: 2; /* Paragraph second */
+        text-align: left;
+    }
+
+    .about-page-specific .about-image {
+        order: 3; /* Image third */
+        align-self: center; /* Optionally center the image itself or keep it left */
+    }
 }
 
 .project-card img.primary-image {
