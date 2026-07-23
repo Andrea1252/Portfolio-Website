@@ -202,15 +202,16 @@ body {
 .hero-slideshow,
 .project-hero-image {
     position: sticky;
-    top: 0;
+    top: 70px; /* Aligns below the navbar */
     z-index: 1;
     width: 100%;
 }
 
-.slideshow-container {
+.slideshow-container,
+.project-hero-image {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: calc(100vh - 70px); /* Fill screen minus navbar */
     overflow: hidden;
     background-color: #ededed;
 }
@@ -407,7 +408,32 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    min-width: max-content;
+    min-width: 0; /* Changed from max-content to prevent mobile cutoff */
+}
+
+/* Gallery Grid System */
+.project-gallery.full-bleed {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5mm;
+    padding: 0;
+    width: 100%;
+}
+
+.gallery-item-third { grid-column: span 4; }
+.gallery-item-half { grid-column: span 6; }
+.gallery-item-full { grid-column: span 12; }
+
+.project-gallery img,
+.project-gallery video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bottom-gallery {
+    padding-bottom: 8rem;
 }
 
 .detail-item p {
@@ -593,12 +619,11 @@ body {
 .process-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+    transition: max-height 0.8s ease-in-out; /* More standard transition for folding */
 }
 
 .expandable-process-wrapper.active .process-content {
-    max-height: 10000px;
-    transition: max-height 1s cubic-bezier(1, 0, 1, 0);
+    max-height: 4000px; /* Large enough for content, but small enough to be smooth */
 }
 
 .expandable-process-wrapper.active .icon-circle { transform: rotate(180deg); }
@@ -670,6 +695,17 @@ body {
     /* Navbar */
     .logo a { font-size: 1.5rem; }
     .menu-toggle { display: flex; z-index: 101; }
+
+    .hero-slideshow,
+    .project-hero-image {
+        top: 60px;
+        height: calc(85vh - 60px);
+    }
+
+    .slideshow-container {
+        height: 100%;
+    }
+
     .nav-menu {
         position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
         background-color: var(--bg-color); display: flex; flex-direction: column;
@@ -685,7 +721,7 @@ body {
     .project-header .subtitle { font-size: 1.4rem; padding-bottom: 1.5rem; }
     .description-inner { display: block; }
     .description-text p { font-size: 1rem; }
-    .description-details { margin-top: 3rem; }
+    .description-details { margin-top: 3rem; min-width: 0; }
     .detail-item p { white-space: normal; }
     .detail-item p strong { width: 100px; }
 
@@ -693,7 +729,17 @@ body {
     .gallery-grid, .gallery-2-col, .project-gallery, .user-research-grid, .text-grid-3, .side-visual-block {
         grid-template-columns: 1fr !important; gap: 30px;
     }
-    .project-hero-image { aspect-ratio: 16 / 10; }
+
+    .project-gallery.full-bleed {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gallery-item-third, .gallery-item-half, .gallery-item-full {
+        width: 100%;
+    }
+
+    .project-hero-image { aspect-ratio: auto; }
 
     /* New Dune Sections */
     .context-header { margin-bottom: 2.5rem; flex-direction: column; }
