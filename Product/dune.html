@@ -74,82 +74,117 @@
         </div>
     </section>
 
-    <!-- Project Gallery Intro -->
-    <section class="project-gallery full-bleed">
-        <div class="gallery-item-full">
-            <div class="aspect-16-9">
-                <img src="../assets/Dune/2K_speaker keyshot scene.png" alt="Dune Environment Scene">
+    <!-- Context Section -->
+    <div class="context-block-wrapper">
+        <section class="context-block">
+            <div class="context-header">
+                <div class="context-title-group">
+                    <h2>Most conventional speakers are designed to be boxy.</h2>
+                    <h3><span style="color: #E74C3C; font-weight: bold;">Parallel walls</span> create internal <span style="color: #E74C3C; font-weight: bold;">standing waves</span> that <span style="color: #E74C3C; font-weight: bold;">destroy sound clarity</span>.</h3>
+                    <p>Choosing flat MDF-constructed box frames prioritizes cheap manufacturing over acoustic integrity. Parallel walls trap sound waves into internal echoes, generating severe standing waves that heavily color and distorts clarity.</p>
+                </div>
             </div>
+            <div class="context-main-image">
+                <img src="../assets/Dune/Box Speakers.png" alt="Context Image">
+            </div>
+        </section>
+    </div>
+
+    <!-- Objective Section -->
+    <section class="objective-section">
+        <div class="objective-inner">
+            <h2>Objective</h2>
+            <p>How can we leverage 3D printing to build an organic speaker that acoustically outperforms standard bookshelf boxes?</p>
         </div>
     </section>
 
-    <!-- Section 1: Teardown -->
-    <div class="technical-block narrow-container">
-        <section class="project-description">
-            <div class="description-inner">
-                <div class="description-text">
-                    <h2>Isolating the Control Group</h2>
-                </div>
+    <!-- Expandable Process Section -->
+    <div class="expandable-process-wrapper">
+        <div class="process-preview">
+            <div class="preview-images">
+                <img src="../assets/Dune/IMG_3497.JPG" alt="Process Preview 1">
+                <img src="../assets/Dune/IMG_4133.JPG" alt="Process Preview 2">
+                <img src="../assets/Dune/IMG_4185.JPG" alt="Process Preview 3">
+                <img src="../assets/Dune/IMG_3341.JPG" alt="Process Preview 4">
             </div>
-        </section>
-        <section class="project-gallery">
-            <div class="gallery-item-full">
-                <img src="../assets/Dune/Edifier Teardown.png" alt="Teardown of the Control Group">
-            </div>
-        </section>
-        <section class="project-description">
-            <div class="description-inner">
-                <div class="description-text">
-                    <p>To validate any acoustic performance leap, establishing a strict control group is mandatory. I disassembled the benchmark speaker to audit its internal architecture, treating the harvested electronics as that baseline. Transplanting these identical components isolated cabinet geometry as the single performance variable, proving any acoustic gains were achieved entirely by my structural architecture rather than a hardware upgrade. Internal volume, dimensions, and initial frequency sweep tests were mapped directly from the original wooden enclosure to set the exact benchmark the 3D-printed geometry would need to beat.</p>
-                </div>
-            </div>
-        </section>
-    </div>
+            <button id="unfold-process" class="unfold-button">
+                <span class="icon-circle">
+                    <i class="fas fa-chevron-up"></i>
+                </span>
+                <span>Unfold full process</span>
+            </button>
+        </div>
 
-    <!-- Section 2: Material Testing -->
-    <div class="technical-block narrow-container">
-        <section class="project-description">
-            <div class="description-inner">
-                <div class="description-text">
-                    <h2>The More Inert the Better</h2>
-                    <p>To find an acoustically inert enclosure substrate, I used a custom-engineered impact rig. By dropping a steel pellet from a fixed height onto the center of each suspended material block, I delivered an identical mechanical impulse to every sample. I recorded the resulting frequency decay using Room EQ Wizard (REW) to measure exactly how fast each polymer naturally silenced itself.</p>
-                </div>
+        <div class="process-content">
+            <!-- Section 1: Teardown -->
+            <div class="technical-block narrow-container">
+                <section class="project-description">
+                    <div class="description-inner">
+                        <div class="description-text">
+                            <h2>Isolating the Control Group</h2>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-gallery">
+                    <div class="gallery-item-full">
+                        <img src="../assets/Dune/Edifier Teardown.png" alt="Teardown of the Control Group">
+                    </div>
+                </section>
+                <section class="project-description">
+                    <div class="description-inner">
+                        <div class="description-text">
+                            <p>To validate any acoustic performance leap, establishing a strict control group is mandatory. I disassembled the benchmark speaker to audit its internal architecture, treating the harvested electronics as that baseline. Transplanting these identical components isolated cabinet geometry as the single performance variable, proving any acoustic gains were achieved entirely by my structural architecture rather than a hardware upgrade. Internal volume, dimensions, and initial frequency sweep tests were mapped directly from the original wooden enclosure to set the exact benchmark the 3D-printed geometry would need to beat.</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
-        <section class="project-gallery">
-            <div class="gallery-item-full">
-                <img src="../assets/Dune/Dune Filament Testing.png" alt="Impact Rig Material Testing">
-                <div class="gallery-caption">
-                    <p><strong>The Infill Paradox</strong> 30% gyroid infill was the most acoustically inert. Its open internal geometry creates miniature air-damping chambers that absorb vibrations better than dense 40% or 50% + grids.</p>
-                    <p><strong>Walls Over Infill</strong> Using 6 solid outer walls increases structural bending stiffness far more efficiently than packing the inside with heavy, high-density infill.</p>
-                    <p><strong>Optimal Substrate</strong> ASA was chosen over PETG. While PETG absorbs impact vibrations well, its low flexural modulus allows the cabinet to flex under acoustic pressure. ASA’s rigid properties completely resist this flexing.</p>
-                </div>
-            </div>
-        </section>
-    </div>
 
-    <!-- Section 3: Data Driven Design -->
-    <div class="technical-block narrow-container">
-        <section class="project-description">
-            <div class="description-inner">
-                <div class="description-text">
-                    <h2>Design Driven by Data</h2>
-                    <p>Material testing parameters directly dictated the product’s internal architecture. Developed in Rhino, this unified monocoque enclosure utilizes specific geometric features to completely eliminate parasitic resonances while maximizing acoustic performance.</p>
-                </div>
+            <!-- Section 2: Material Testing -->
+            <div class="technical-block narrow-container">
+                <section class="project-description">
+                    <div class="description-inner">
+                        <div class="description-text">
+                            <h2>The More Inert the Better</h2>
+                            <p>To find an acoustically inert enclosure substrate, I used a custom-engineered impact rig. By dropping a steel pellet from a fixed height onto the center of each suspended material block, I delivered an identical mechanical impulse to every sample. I recorded the resulting frequency decay using Room EQ Wizard (REW) to measure exactly how fast each polymer naturally silenced itself.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-gallery">
+                    <div class="gallery-item-full">
+                        <img src="../assets/Dune/Dune Filament Testing.png" alt="Impact Rig Material Testing">
+                        <div class="gallery-caption">
+                            <p><strong>The Infill Paradox</strong> 30% gyroid infill was the most acoustically inert. Its open internal geometry creates miniature air-damping chambers that absorb vibrations better than dense 40% or 50% + grids.</p>
+                            <p><strong>Walls Over Infill</strong> Using 6 solid outer walls increases structural bending stiffness far more efficiently than packing the inside with heavy, high-density infill.</p>
+                            <p><strong>Optimal Substrate</strong> ASA was chosen over PETG. While PETG absorbs impact vibrations well, its low flexural modulus allows the cabinet to flex under acoustic pressure. ASA’s rigid properties completely resist this flexing.</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
-        <section class="project-gallery">
-            <div class="gallery-item-full">
-                <img src="../assets/Dune/Screenshot 2026-07-08 at 11.21.03 PM.png" alt="Rhino Data Driven Architecture">
-                <div class="gallery-caption">
-                    <p><strong>Integrated Waveguide</strong> Controls high-frequency dispersion and reduces harsh room reflections.</p>
-                    <p><strong>Non-Parallel Geometry</strong> The sloped back wall entirely prevents internal standing waves and muddy mid-range resonance.</p>
-                    <p><strong>Isolated Tweeter Chamber</strong> Protects the high-frequency driver from the intense back-pressure waves of the woofer.</p>
-                    <p><strong>Sandwich Wall Structure</strong> 6 walls paired with a 30% gyroid core to maximize structural stiffness and eliminate panel flex.</p>
-                    <p><strong>Mathematically Flared Port</strong> Extends low-frequency bass response while preventing aerodynamic wind noise (chuffing).</p>
-                </div>
+
+            <!-- Section 3: Data Driven Design -->
+            <div class="technical-block narrow-container">
+                <section class="project-description">
+                    <div class="description-inner">
+                        <div class="description-text">
+                            <h2>Design Driven by Data</h2>
+                            <p>Material testing parameters directly dictated the product’s internal architecture. Developed in Rhino, this unified monocoque enclosure utilizes specific geometric features to completely eliminate parasitic resonances while maximizing acoustic performance.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-gallery">
+                    <div class="gallery-item-full">
+                        <img src="../assets/Dune/Screenshot 2026-07-08 at 11.21.03 PM.png" alt="Rhino Data Driven Architecture">
+                        <div class="gallery-caption">
+                            <p><strong>Integrated Waveguide</strong> Controls high-frequency dispersion and reduces harsh room reflections.</p>
+                            <p><strong>Non-Parallel Geometry</strong> The sloped back wall entirely prevents internal standing waves and muddy mid-range resonance.</p>
+                            <p><strong>Isolated Tweeter Chamber</strong> Protects the high-frequency driver from the intense back-pressure waves of the woofer.</p>
+                            <p><strong>Sandwich Wall Structure</strong> 6 walls paired with a 30% gyroid core to maximize structural stiffness and eliminate panel flex.</p>
+                            <p><strong>Mathematically Flared Port</strong> Extends low-frequency bass response while preventing aerodynamic wind noise (chuffing).</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
     </div>
 
     <!-- Final Gallery: Process & Detail Grid -->

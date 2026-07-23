@@ -124,7 +124,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Pause Boghylde video on mobile
+    // 6. Expandable Process Logic
+    const unfoldBtn = document.getElementById('unfold-process');
+    const processWrapper = document.querySelector('.expandable-process-wrapper');
+    if (unfoldBtn && processWrapper) {
+        unfoldBtn.addEventListener('click', () => {
+            const isExpanding = !processWrapper.classList.contains('active');
+            processWrapper.classList.toggle('active');
+
+            if (isExpanding) {
+                // Scroll to show the start of the process content
+                setTimeout(() => {
+                    lenis.scrollTo(processWrapper, {
+                        offset: 0,
+                        duration: 1.5
+                    });
+                }, 150);
+            } else {
+                lenis.scrollTo(processWrapper, { offset: -100 });
+            }
+        });
+    }
+
+    // 7. Pause Boghylde video on mobile
     const boghyldeVideo = document.querySelector('a[href*="boghylde"] video');
     if (boghyldeVideo && window.innerWidth <= 768) {
         boghyldeVideo.removeAttribute('autoplay');

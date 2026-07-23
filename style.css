@@ -83,7 +83,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 1rem var(--side-padding); /* Adjusted from 1.5rem to 1rem */
 }
@@ -714,13 +714,107 @@ body {
    PROJECT PAGE WIDTHS (Edit these to change layout width)
    -------------------------------------------------------------------------- */
 
+/* Context Block */
+.context-block-wrapper {
+    width: 100%;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
+}
+
+.context-block {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 6rem var(--side-padding);
+}
+
+.context-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 4rem;
+}
+
+.context-title-group {
+    flex: 1;
+}
+
+.context-title-group h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.context-title-group h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.context-title-group p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+.context-logo {
+    width: 100px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.context-logo img, .context-logo svg {
+    width: 100%;
+    height: auto;
+}
+
+.context-main-image {
+    width: 100%;
+    aspect-ratio: 21 / 9; /* Cinematic wide ratio (taller than 32:9, shorter than 16:9) */
+    overflow: hidden;
+}
+
+.context-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .context-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .context-title-group h2 {
+        font-size: 1.5rem;
+    }
+
+    .context-title-group h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .context-block {
+        padding: 4rem var(--side-padding);
+    }
+}
+
 /* 1. MAIN INTRO WIDTH (Title, Subtitle, Paragraph, Metadata, Expertise) */
 .project-header h1,
 .project-header .subtitle,
 .project-description .description-inner,
 .user-research-grid,
 .expertise-container {
-    max-width: 1600px;           /* MATCHING MAIN GRID WIDTH */
+    max-width: 1400px;           /* RESTORED TO ORIGINAL WIDTH */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -734,8 +828,9 @@ body {
 .technical-block .description-inner,
 .technical-block .project-gallery:not(.full-bleed),
 .technical-block .gallery-grid,
-.technical-block .gallery-2-col {
-    max-width: 1300px;           /* MATCHING MAIN GRID WIDTH */
+.technical-block .gallery-2-col,
+.context-block {
+    max-width: 1300px;           /* RESTORED TO ORIGINAL WIDTH */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -1245,6 +1340,176 @@ body {
     .technical-block {
         padding-bottom: 1rem;        /* GAP 3: Space between major sections */
         padding-top: 3rem;          /* GAP 4: Space above the Heading (from divider line) */
+    }
+}
+
+/* Objective Section */
+.objective-section {
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 10rem var(--side-padding);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.objective-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.objective-section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    display: inline-block;
+    border-bottom: 2px solid var(--text-primary);
+    padding-bottom: 0.5rem;
+}
+
+.objective-section p {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+/* Expandable Process Section */
+.expandable-process-wrapper {
+    width: 100%;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid var(--border-color);
+    padding-bottom: 2rem; /* Changed from margin-bottom to padding-bottom to keep background solid */
+}
+
+.process-preview {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: var(--bg-color);
+    padding-bottom: 2rem;
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preview-images {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 4rem; /* Sit above the button's text area */
+    opacity: 0.5; /* Light overlay effect */
+    transition: all 0.5s ease;
+}
+
+.preview-images img {
+    width: 300px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.5s ease;
+}
+
+/* Fan-out effect */
+.preview-images img:nth-child(1) { transform: rotate(-8deg) translateY(20px); }
+.preview-images img:nth-child(2) { transform: rotate(-3deg) translateY(0); }
+.preview-images img:nth-child(3) { transform: rotate(5deg) translateY(10px); }
+
+.unfold-button {
+    position: relative;
+    margin-bottom: 0; /* Removed negative margin to allow more breathing room */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 20;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unfold-button .icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #5d93cc; /* Muted blue from screenshot */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.unfold-button span:not(.icon-circle) {
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.process-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+}
+
+.expandable-process-wrapper.active .process-content {
+    max-height: 10000px;
+    transition: max-height 1s cubic-bezier(1, 0, 1, 0);
+}
+
+.expandable-process-wrapper.active .icon-circle {
+    transform: rotate(180deg);
+}
+
+.expandable-process-wrapper.active .process-preview {
+    height: 120px; /* Adjusted height to keep arrow nicely centered vertically */
+    overflow: visible;
+}
+
+.expandable-process-wrapper.active .preview-images {
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.expandable-process-wrapper.active .unfold-button span:not(.icon-circle) {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.expandable-process-wrapper.active .unfold-button {
+    margin-bottom: 0;
+    /* Keeps it centered relative to the now smaller process-preview */
+    transform: translateY(-20px);
+}
+
+@media (max-width: 768px) {
+    .objective-section p {
+        font-size: 1.5rem;
+    }
+    .preview-images img {
+        width: 150px;
+        height: 200px;
     }
 }
 
