@@ -39,11 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const projectHeader = document.querySelector('.project-header');
     const workSection = document.querySelector('.work-section');
+    const carouselScrollSection = document.getElementById('scroll-carousel');
     let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
         const isMobileOrTablet = window.innerWidth <= 1024;
         let canHide = true;
+        let forceHide = false;
 
         if (isMobileOrTablet) {
             // On mobile/tablet, don't hide navbar until content reaches it
@@ -56,8 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // NEW: Disable navbar show on scroll up for carousel section
+        if (carouselScrollSection) {
+            const rect = carouselScrollSection.getBoundingClientRect();
+            // If the carousel is currently sticky/in-view
+            if (rect.top <= 0 && rect.bottom >= 0) {
+                forceHide = true;
+            }
+        }
+
         if (window.scrollY > lastScrollY && window.scrollY > 100 && canHide) {
             // Scrolling down
+            navbar.classList.add('nav-hidden');
+        } else if (forceHide) {
+            // Force hidden even when scrolling up
             navbar.classList.add('nav-hidden');
         } else {
             // Scrolling up
@@ -151,5 +165,87 @@ document.addEventListener('DOMContentLoaded', () => {
     if (boghyldeVideo && window.innerWidth <= 768) {
         boghyldeVideo.removeAttribute('autoplay');
         boghyldeVideo.pause();
+    }
+
+    // 8. Rotating Carousel logic (Scroll Triggered)
+    const carouselSection = document.getElementById('scroll-carousel');
+    const carouselTrack = document.querySelector('.carousel-track');
+    const carouselLabels = document.querySelectorAll('.carousel-label');
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+
+    if (carouselSection && carouselTrack && carouselLabels.length > 0) {
+        lenis.on('scroll', () => {
+            const sectionRect = carouselSection.getBoundingClientRect();
+            const sectionHeight = sectionRect.height;
+            const viewHeight = window.innerHeight;
+
+            // Calculate progress through the section
+            let progress = -sectionRect.top / (sectionHeight - viewHeight);
+            progress = Math.max(0, Math.min(1, progress));
+
+            const totalSlides = carouselLabels.length;
+            const currentIdx = Math.round(progress * (totalSlides - 1));
+
+            // Sync Labels
+            carouselLabels.forEach((label, idx) => {
+                if (idx === currentIdx) {
+                    label.classList.add('active');
+                } else {
+                    label.classList.remove('active');
+                }
+            });
+
+            // Sync Slides - Direct scroll mapping for "70% visible" plateau
+            carouselSlides.forEach((slide, idx) => {
+                const targetProgress = idx / (totalSlides - 1);
+                const distance = Math.abs(progress - targetProgress);
+                const maxDistance = 0.125; // Halfway to next slide
+                const plateauThreshold = 0.0875; // 70% of the 0.25 gap
+
+                const overlay = slide.querySelector('.slide-overlay');
+                if (overlay) {
+                    let opacity = 0;
+                    let xOffset = 0;
+
+                    if (distance <= plateauThreshold) {
+                        opacity = 1;
+                        xOffset = 0;
+                    } else if (distance < maxDistance) {
+                        // Linear fade/slide in the remaining 15%
+                        const fadeProgress = (distance - plateauThreshold) / (maxDistance - plateauThreshold);
+                        opacity = 1 - fadeProgress;
+
+                        // Slide effect: text moves out as it fades
+                        const direction = progress > targetProgress ? -1 : 1;
+                        xOffset = direction * fadeProgress * 30; // Move up to 30px
+                    }
+
+                    overlay.style.opacity = opacity;
+                    overlay.style.transform = `translateX(${xOffset}px)`;
+                }
+
+                if (distance < 0.1) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update Track Transform (Rolling)
+            const translateY = progress * (totalSlides - 1) * 100;
+            carouselTrack.style.transform = `translateY(-${translateY / totalSlides}%)`;
+        });
+
+        // Click to navigate
+        carouselLabels.forEach((label, idx) => {
+            label.addEventListener('click', () => {
+                const sectionHeight = carouselSection.offsetHeight;
+                const viewHeight = window.innerHeight;
+                // Calculate the scroll position for this specific index
+                // progress = idx / (totalSlides - 1)
+                const targetScroll = carouselSection.offsetTop + (idx / (carouselLabels.length - 1)) * (sectionHeight - viewHeight);
+                lenis.scrollTo(targetScroll, { duration: 1.5 });
+            });
+        });
     }
 });
