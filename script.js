@@ -172,8 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselTrack = document.querySelector('.carousel-track');
     const carouselLabels = document.querySelectorAll('.carousel-label');
     const carouselSlides = document.querySelectorAll('.carousel-slide');
+    const mobileTextContainer = document.querySelector('.mobile-carousel-text');
 
     if (carouselSection && carouselTrack && carouselLabels.length > 0) {
+        let lastIdx = -1;
+
         lenis.on('scroll', () => {
             const sectionRect = carouselSection.getBoundingClientRect();
             const sectionHeight = sectionRect.height;
@@ -195,7 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Sync Slides - Direct scroll mapping for "70% visible" plateau
+            // Sync Slides and Mobile Text
+            const isMobile = window.innerWidth <= 768;
+
             carouselSlides.forEach((slide, idx) => {
                 const targetProgress = idx / (totalSlides - 1);
                 const distance = Math.abs(progress - targetProgress);
@@ -203,25 +208,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 const plateauThreshold = 0.0875; // 70% of the 0.25 gap
 
                 const overlay = slide.querySelector('.slide-overlay');
-                if (overlay) {
-                    let opacity = 0;
-                    let xOffset = 0;
 
-                    if (distance <= plateauThreshold) {
-                        opacity = 1;
-                        xOffset = 0;
-                    } else if (distance < maxDistance) {
-                        // Linear fade/slide in the remaining 15%
-                        const fadeProgress = (distance - plateauThreshold) / (maxDistance - plateauThreshold);
-                        opacity = 1 - fadeProgress;
-
-                        // Slide effect: text moves out as it fades
-                        const direction = progress > targetProgress ? -1 : 1;
-                        xOffset = direction * fadeProgress * 30; // Move up to 30px
+                if (isMobile) {
+                    // Mobile: Update external text container
+                    if (idx === currentIdx && currentIdx !== lastIdx && mobileTextContainer) {
+                        // Fade out, swap, fade in
+                        mobileTextContainer.style.opacity = 0;
+                        setTimeout(() => {
+                            mobileTextContainer.innerHTML = overlay ? overlay.outerHTML : '';
+                            mobileTextContainer.style.opacity = 1;
+                        }, 250);
+                        lastIdx = currentIdx;
                     }
+                } else {
+                    // Desktop: Maintain overlay-on-image fading
+                    if (overlay) {
+                        let opacity = 0;
+                        let xOffset = 0;
 
-                    overlay.style.opacity = opacity;
-                    overlay.style.transform = `translateX(${xOffset}px)`;
+                        if (distance <= plateauThreshold) {
+                            opacity = 1;
+                            xOffset = 0;
+                        } else if (distance < maxDistance) {
+                            const fadeProgress = (distance - plateauThreshold) / (maxDistance - plateauThreshold);
+                            opacity = 1 - fadeProgress;
+                            const direction = progress > targetProgress ? -1 : 1;
+                            xOffset = direction * fadeProgress * 30;
+                        }
+
+                        overlay.style.opacity = opacity;
+                        overlay.style.transform = `translateX(${xOffset}px)`;
+                    }
                 }
 
                 if (distance < 0.1) {
@@ -247,5 +264,72 @@ document.addEventListener('DOMContentLoaded', () => {
                 lenis.scrollTo(targetScroll, { duration: 1.5 });
             });
         });
+    }
+
+    // 9. Swipe Navigation for Project Pages
+    if (document.body.classList.contains('project-page')) {
+        const projects = [
+            'Product/dune.html',
+            'Product/lifeaid.html',
+            'Product/revvo.html',
+            'Furniture/boghylde.html',
+            'Furniture/cove.html',
+            'Furniture/panel.html',
+            'Product/deskscape.html',
+            'Product/weeding-fork.html',
+            'Product/jet.html',
+            'Product/verge.html',
+            'Product/swirl.html'
+        ];
+
+        // Determine current project path relative to root
+        let currentPath = window.location.pathname;
+        // Normalize path: handle relative paths if opened locally
+        if (currentPath.endsWith('/')) currentPath += 'index.html';
+
+        const currentProject = projects.find(p => currentPath.includes(p));
+        const currentIndex = projects.indexOf(currentProject);
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentIndex < projects.length - 1) {
+                    // Swipe Left -> Next Project
+                    navigateToProject(projects[currentIndex + 1]);
+                } else if (diff < 0 && currentIndex > 0) {
+                    // Swipe Right -> Previous Project
+                    navigateToProject(projects[currentIndex - 1]);
+                }
+            }
+        }
+
+        function navigateToProject(target) {
+            document.body.classList.add('page-exit');
+            setTimeout(() => {
+                // Adjust path based on current subdirectory depth
+                const depth = (currentPath.match(/\//g) || []).length;
+                let prefix = depth > 1 ? '../' : '';
+                // If we are already in a subdirectory and the target is in a subdirectory,
+                // we might need to go up one then down.
+                // Simple fix: if current is in folder and target has folder, use root-relative if possible
+                // or just construct the path.
+                // Given the structure, ../target should work from Product/ or Furniture/
+                window.location.href = '../' + target;
+            }, 600);
+        }
+
+        window.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        window.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
     }
 });

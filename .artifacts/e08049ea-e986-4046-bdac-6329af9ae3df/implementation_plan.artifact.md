@@ -1,36 +1,34 @@
-# Implementation Plan - Scroll-Triggered Vertical "Rolling" Carousel
+# Implementation Plan - Swipe-Based Navigation & Page Transitions
 
-Transform the current automatic Revvo carousel into a scroll-driven vertical "rolling" experience. As the user scrolls, the images will roll vertically, and the corresponding text label will bold in sync with the movement.
+Add smooth swipe gestures (left/right) to navigate between project pages and implement seamless transitions between projects.
 
 ## Proposed Changes
 
-### [Product Component]
-
-#### [MODIFY] [revvo.html](file:///Users/andrea/StudioProjects/Portfolio-Website/Product/revvo.html)
-- Wrap the `.rotating-carousel` content in a `.carousel-sticky-wrapper`.
-- Restructure `.carousel-main` to contain a `.carousel-track` that holds all images vertically.
-
-#### [MODIFY] [style.css](file:///Users/andrea/StudioProjects/Portfolio-Website/style.css)
-- Set `.rotating-carousel` to a large height (e.g., `400vh`) to create a scrollable "track".
-- Apply `position: sticky; top: 0; height: 100vh;` to `.carousel-sticky-wrapper`.
-- Update `.carousel-main` to act as a "window" (`overflow: hidden`) for the rolling images.
-- Style `.carousel-track` to stack images vertically and use `transition: transform` for smooth rolling (or direct scroll mapping).
-- Update labels to be fixed/centered above the image window.
+### [Core Component]
 
 #### [MODIFY] [script.js](file:///Users/andrea/StudioProjects/Portfolio-Website/script.js)
-- Remove the `setInterval` auto-rotation logic.
-- Add a scroll listener (hooked into Lenis or standard `scroll`) that:
-    - Calculates the progress (0 to 1) of the scroll within the `.rotating-carousel` section.
-    - Maps that progress to the active slide index (0 to 4).
-    - Updates the bolding of the `.carousel-label` elements.
-    - Applies a `translateY` transform to the `.carousel-track` to "roll" the images vertically.
+- **Project Sequence Mapping**:
+    - Define the order of projects (Dune -> LifeAid -> Revvo -> Boghylde -> Cove -> Panel -> Deskscape -> Weeding Fork -> Jet -> Verge -> Swirl).
+    - Map the current file name to its index in the sequence.
+- **Swipe Detection**:
+    - Implement `touchstart` and `touchend` event listeners.
+    - Calculate the horizontal delta (dX) to determine swipe direction.
+    - If swipe threshold is met, navigate to the `next` or `previous` project.
+- **Smooth Page Transitions**:
+    - Use a CSS-based entrance/exit animation (e.g., fade-out on exit, fade-in on load).
+    - Add a "loading" state class to the body during navigation.
+
+#### [MODIFY] [style.css](file:///Users/andrea/StudioProjects/Portfolio-Website/style.css)
+- Add global page transition styles:
+    - `.page-transition-overlay`: A full-screen element that handles the color/fade between pages.
+    - `@keyframes fadeOut` and `@keyframes fadeIn`.
+- Ensure transition classes are applied to the `body`.
 
 ## Verification Plan
 
 ### Manual Verification
-- Open `revvo.html` in a browser.
-- Scroll down to the carousel section.
-- Verify that the section "sticks" to the viewport.
-- Confirm that as you continue scrolling, the images roll vertically and the text labels bold according to the visible image.
-- Verify the transition is smooth and synced with the scroll speed.
-- Test on mobile to ensure the sticky behavior and vertical rolling work as expected.
+- Open any project page (e.g., `revvo.html`).
+- Swipe left on a mobile device or browser emulator to move to the next project (**Boghylde**).
+- Swipe right to move to the previous project (**LifeAid**).
+- Verify the transition feels "smooth" (no harsh white flicker).
+- Check that navigation works across both `Product/` and `Furniture/` subdirectories correctly.

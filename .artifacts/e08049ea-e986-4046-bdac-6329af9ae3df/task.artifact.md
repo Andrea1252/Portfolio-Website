@@ -1,6 +1,6 @@
-# Tasks - Scroll-Triggered Vertical Carousel
+# Tasks - Swipe Navigation & Page Transitions
 
-- [x] Restructure `revvo.html` for sticky behavior and image track
-- [x] Update `style.css` with sticky positioning and vertical roll animations
-- [x] Update `script.js` to map scroll progress to carousel movement and label bolding
-- [x] Verify scroll-sync accuracy and responsiveness
+- [x] Add transition styles to `style.css`
+- [x] Implement swipe logic in `script.js`
+- [x] Implement page sequence and navigation in `script.js`
+- [x] Verify functionality
