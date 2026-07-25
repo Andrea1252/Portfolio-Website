@@ -226,6 +226,48 @@ body {
     object-fit: cover;
 }
 
+/* Slideshow Indicators */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 5rem; /* Moved from top to bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 var(--side-padding);
+    display: flex;
+    justify-content: flex-end; /* Keeps it on the right side */
+    z-index: 5;
+}
+
+.slideshow-indicators-inner {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+.indicator.active {
+    background-color: #ffffff;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] .indicator {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .indicator.active {
+    background-color: #ffffff;
+}
+
 /* ==========================================================================
    4. PORTFOLIO GRID & WORK SECTION
    ========================================================================== */
@@ -726,8 +768,10 @@ body {
     padding: 0; /* Let global centering handle this */
 }
 
-/* Remove the narrow-container overrides to allow child width constraints to work */
+/* Restored narrow-container functionality to align content */
 .narrow-container {
+    max-width: 1100px;
+    margin: 0 auto;
     width: 100%;
 }
 
@@ -888,7 +932,7 @@ body {
 .technical-block .gallery-grid,
 .technical-block .gallery-2-col,
 .context-block {
-    max-width: 1300px;           /* RESTORED TO ORIGINAL WIDTH */
+    max-width: 1100px;           /* REDUCED TO 1100PX AS REQUESTED */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -896,6 +940,15 @@ body {
     padding-right: var(--side-padding);
     position: relative;
     z-index: 10;
+}
+
+.project-header h1,
+.project-header .subtitle {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
 }
 
 .project-header h1 {
@@ -1291,6 +1344,7 @@ body {
     object-fit: cover;
 }
 
+@media (max-width: 768px) {
     .gallery-grid,
     .gallery-2-col,
     .project-gallery,
@@ -1306,6 +1360,7 @@ body {
         width: 100% !important;
         max-width: 100% !important;
     }
+}
 
 @media (max-width: 768px) {
     /* ---------------------------------------------------------

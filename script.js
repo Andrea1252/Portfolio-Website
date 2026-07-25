@@ -101,13 +101,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Hero Slideshow Logic
     const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+
     if (slides.length > 0) {
-        let currentSlide = 0;
+        // Pick a random starting slide
+        let currentSlide = Math.floor(Math.random() * slides.length);
+
+        // Initialize the random starting slide
+        slides.forEach((slide, i) => {
+            if (i === currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        function updateIndicators(index) {
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // Initial indicator sync
+        updateIndicators(currentSlide);
 
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
+            updateIndicators(currentSlide);
         }
 
         // Change slide every 1.5 seconds
