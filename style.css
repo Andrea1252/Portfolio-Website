@@ -1185,19 +1185,19 @@ body {
 
 .project-gallery.full-bleed .gallery-item-double {
     grid-column: span 9; /* Wider: 75% */
-    height: 65vh;
+    height: 32vh;
     overflow: hidden;
 }
 
 .project-gallery.full-bleed .gallery-item-single {
-    height: 65vh;
+    height: 32vh;
     overflow: hidden;
 }
 
 .project-gallery.full-bleed img {
     height: 100% !important;
     object-fit: cover;
-    object-position: center top; /* Keeps the top of the image visible while cropping the bottom */
+    object-position: center center; /* Vertically centers the image within the frame */
 }
 
 .gallery-2-col {
