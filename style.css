@@ -411,6 +411,17 @@ body {
     .slideshow-container {
         aspect-ratio: 16 / 10; /* Changed to 16:10 ratio on mobile */
     }
+
+    .slideshow-indicators {
+        bottom: 2rem; /* Shift it down a bit */
+        justify-content: flex-start; /* Aligned to the left */
+        padding: 0 var(--side-padding); /* Use global side padding to align with grid */
+    }
+
+    .slideshow-indicators-inner {
+        gap: 0.5rem; /* Tighter gap on mobile if needed */
+    }
+
     .featured-double .project-image-container {
         height: auto;
     }
@@ -665,10 +676,10 @@ body {
 .side-visual-block {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1; /* Removed large gap to bring text closer */
+    gap: 0; /* Removed gap for cleaner alignment */
     align-items: center;
     margin: 4rem 0;
-    padding: 0 var(--side-padding);
+    padding: 0 var(--side-padding) 0 0; /* Removed left padding to align video with max width */
 }
 
 .side-visual-media {
@@ -686,7 +697,7 @@ body {
 
 .side-visual-content {
     max-width: 600px;
-    margin-left: -5rem; /* Shifting text box closer to the video */
+    margin-left: calc(-1rem + (var(--side-padding) / 2)); /* Adjusted to maintain position after padding change */
     z-index: 2;
     position: relative;
 }
