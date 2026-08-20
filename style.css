@@ -43,7 +43,7 @@ html.lenis body {
     --text-secondary: #777777;
     --accent-color: #222222;
     --border-color: #eaeaea;
-    --side-padding: 10px;
+    --side-padding: 50px;
     --card-bg: #ededed;
 }
 
@@ -83,9 +83,9 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 1rem var(--side-padding); /* Adjusted from 1.5rem to 1rem */
+    padding: 1rem var(--side-padding);
 }
 
 .navbar.nav-hidden {
@@ -233,7 +233,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     padding: 0 var(--side-padding);
     display: flex;
     justify-content: flex-end; /* Keeps it on the right side */
@@ -301,17 +301,17 @@ body {
 .work-section h2 {
     text-align: left;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
-    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem; /* Reduced manually from 2.5rem */
     color: var(--text-secondary);
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 4rem 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem 1.5rem;
     grid-auto-flow: dense;
 }
 
@@ -330,7 +330,7 @@ body {
     overflow: hidden;
     border: 1px solid var(--border-color);
     background-color: var(--card-bg);
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 .project-image-container img,
@@ -342,21 +342,21 @@ body {
 }
 
 .project-info {
-    padding-top: 0.75rem;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
+    padding-top: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03rem;
     color: var(--text-primary);
     line-height: 1.2;
 }
 
 .project-info span {
     display: block;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 400;
     letter-spacing: 0rem;
     color: var(--text-secondary);
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 /* ==========================================================================
@@ -675,11 +675,11 @@ body {
 /* Side-by-Side Technical Block */
 .side-visual-block {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0; /* Removed gap for cleaner alignment */
+    grid-template-columns: 2fr 1fr; /* Aggressive ratio to prioritize image scale */
+    gap: 4rem;
     align-items: center;
-    margin: 4rem 0;
-    padding: 0 var(--side-padding) 0 0; /* Removed left padding to align video with max width */
+    margin: 2rem 0; /* Reduced margin to tighten vertical rhythm */
+    padding: 0 var(--side-padding);
 }
 
 .side-visual-media {
@@ -689,15 +689,14 @@ body {
 
 .side-visual-media video,
 .side-visual-media img {
-    width: 120%;
+    width: 100%; /* Reset to 100% for standard layout */
     height: auto;
     display: block;
-    transform: scale(1);
 }
 
 .side-visual-content {
     max-width: 600px;
-    margin-left: calc(-1rem + (var(--side-padding) / 2)); /* Adjusted to maintain position after padding change */
+    margin-left: 0; /* Removed negative overlap */
     z-index: 2;
     position: relative;
 }
@@ -730,6 +729,36 @@ body {
     padding-top: 1.5rem;
     max-width: 90%;
 }
+
+/* Process Image Grids */
+.process-image-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.process-image-grid-6 img {
+    width: 100% !important; /* Override the 120% from parent */
+    aspect-ratio: 4 / 5; /* Forces a professional portrait ratio */
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.process-image-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Match the FEA mockup look */
+    gap: 15px;
+    width: 100%;
+}
+
+.process-image-grid-2 img {
+    width: 100% !important; /* Override the 120% from parent */
+    height: auto;
+    object-fit: contain;
+}
+
+
 
 /* User Research Grid */
 .user-research-grid {
@@ -777,7 +806,7 @@ body {
 .technical-block {
     width: 100%;
     margin-bottom: 0;
-    padding: 2rem 0 4rem; /* Reduced top padding from 4rem to 2rem */
+    padding: 4rem 0; /* Reduced spacing by 50% for a tighter layout */
     border-top: 1px solid var(--border-color);
     background-color: var(--bg-color);
 }
@@ -939,7 +968,7 @@ body {
 .project-description .description-inner,
 .user-research-grid,
 .expertise-container {
-    max-width: 1400px;           /* RESTORED TO ORIGINAL WIDTH */
+    max-width: 1600px;           /* ALIGNED WITH PROJECT GRID */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -954,9 +983,8 @@ body {
 .technical-block .project-gallery:not(.full-bleed),
 .technical-block .gallery-grid,
 .technical-block .gallery-2-col,
-.context-block,
-.almost-full-bleed {
-    max-width: 1400px;           /* REDUCED TO 1100PX AS REQUESTED */
+.context-block {
+    max-width: 1100px;           /* REDUCED TO 1100PX FOR FOCUS */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -967,12 +995,17 @@ body {
 }
 
 .almost-full-bleed {
-    max-width: 1400px !important; /* Overriding to be "almost full bleed" */
+    max-width: 1600px !important; /* Aligned with Logo/Header Width */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
 }
 
 .project-header h1,
 .project-header .subtitle {
-    max-width: 1400px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
     padding-left: var(--side-padding);
@@ -1089,7 +1122,7 @@ body {
 }
 
 .EpipenTiff\.png {
-    max-width: 1400px;
+    max-width: 1600px;
     width: 90%;
     height: auto;
     margin: 0 auto;
@@ -1627,6 +1660,12 @@ body {
     transition: max-height 1s cubic-bezier(0, 1, 0, 1);
 }
 
+.process-content h2,
+.process-content h3,
+.process-content .description-text h2 {
+    color: var(--text-primary);
+}
+
 .expandable-process-wrapper.active .process-content {
     max-height: 10000px;
     transition: max-height 1s cubic-bezier(1, 0, 1, 0);
@@ -1777,7 +1816,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 var(--side-padding);
 }
@@ -1920,7 +1959,7 @@ body {
 }
 
 .carousel-main {
-    max-width: 1400px;
+    max-width: 1600px;
     width: calc(100% - (var(--side-padding) * 2));
     margin: 0 auto;
     position: relative;
