@@ -198,6 +198,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (carouselSection && carouselTrack && carouselLabels.length > 0) {
         let lastIdx = -1;
+        let isSnapping = false;
+
+        // Snapping Function
+        const handleSnap = (progress) => {
+            if (isSnapping) return;
+
+            const totalSlides = carouselLabels.length;
+            const targetIdx = Math.round(progress * (totalSlides - 1));
+            const targetProgress = targetIdx / (totalSlides - 1);
+
+            // Only snap if we aren't already very close
+            if (Math.abs(progress - targetProgress) > 0.01) {
+                isSnapping = true;
+                const sectionHeight = carouselSection.offsetHeight;
+                const viewHeight = window.innerHeight;
+                const targetScroll = carouselSection.offsetTop + targetProgress * (sectionHeight - viewHeight);
+
+                lenis.scrollTo(targetScroll, {
+                    duration: 0.8,
+                    easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t, // Ease in-out
+                    onComplete: () => {
+                        isSnapping = false;
+                    }
+                });
+            }
+        };
+
+        let snapTimeout;
 
         lenis.on('scroll', () => {
             const sectionRect = carouselSection.getBoundingClientRect();
@@ -207,6 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Calculate progress through the section
             let progress = -sectionRect.top / (sectionHeight - viewHeight);
             progress = Math.max(0, Math.min(1, progress));
+
+            // Snap logic: Debounce snapping when scrolling stops
+            clearTimeout(snapTimeout);
+            // Only trigger snap if we are in the carousel's scrollable range
+            if (sectionRect.top <= 100 && sectionRect.bottom >= viewHeight - 100) {
+                snapTimeout = setTimeout(() => handleSnap(progress), 200);
+            }
 
             const totalSlides = carouselLabels.length;
             const currentIdx = Math.round(progress * (totalSlides - 1));
@@ -221,20 +256,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Sync Slides and Mobile Text
-            const isMobile = window.innerWidth <= 768;
+            const isMobile = window.innerWidth <= 1100;
 
             carouselSlides.forEach((slide, idx) => {
                 const targetProgress = idx / (totalSlides - 1);
-                const distance = Math.abs(progress - targetProgress);
-                const maxDistance = 0.125; // Halfway to next slide
-                const plateauThreshold = 0.0875; // 70% of the 0.25 gap
-
                 const overlay = slide.querySelector('.slide-overlay');
 
                 if (isMobile) {
                     // Mobile: Update external text container
                     if (idx === currentIdx && currentIdx !== lastIdx && mobileTextContainer) {
-                        // Fade out, swap, fade in
                         mobileTextContainer.style.opacity = 0;
                         setTimeout(() => {
                             mobileTextContainer.innerHTML = overlay ? overlay.outerHTML : '';
@@ -243,36 +273,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         lastIdx = currentIdx;
                     }
                 } else {
-                    // Desktop: Maintain overlay-on-image fading
+                    // Desktop: Snap text visibility via CSS class
                     if (overlay) {
-                        let opacity = 0;
-                        let xOffset = 0;
-
-                        if (distance <= plateauThreshold) {
-                            opacity = 1;
-                            xOffset = 0;
-                        } else if (distance < maxDistance) {
-                            const fadeProgress = (distance - plateauThreshold) / (maxDistance - plateauThreshold);
-                            opacity = 1 - fadeProgress;
-                            const direction = progress > targetProgress ? -1 : 1;
-                            xOffset = direction * fadeProgress * 30;
+                        if (idx === currentIdx) {
+                            overlay.classList.add('active');
+                        } else {
+                            overlay.classList.remove('active');
+                            // Dynamic exit direction
+                            const xOffset = progress > targetProgress ? -30 : 30;
+                            overlay.style.transform = `translateX(${xOffset}px)`;
                         }
-
-                        overlay.style.opacity = opacity;
-                        overlay.style.transform = `translateX(${xOffset}px)`;
                     }
                 }
 
-                if (distance < 0.1) {
+                if (idx === currentIdx) {
                     slide.classList.add('active');
                 } else {
                     slide.classList.remove('active');
                 }
             });
 
-            // Update Track Transform (Rolling)
-            const translateY = progress * (totalSlides - 1) * 100;
-            carouselTrack.style.transform = `translateY(-${translateY / totalSlides}%)`;
+            // Update Track Transform (Snapping)
+            const targetTranslateY = currentIdx * (100 / totalSlides);
+            carouselTrack.style.transform = `translateY(-${targetTranslateY}%)`;
         });
 
         // Click to navigate
