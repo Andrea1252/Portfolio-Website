@@ -1190,7 +1190,7 @@ body {
 }
 
 .description-text {
-    flex: 1 1 800px;
+    flex: 1 1 600px; /* Reduced from 800px to wrap earlier */
     max-width: none;
 }
 
@@ -1336,7 +1336,6 @@ body {
 .detail-item p {
     display: flex;
     align-items: baseline;
-    white-space: nowrap;    /* Forces text to stay on one line */
     font-size: 1.15rem;
     color: var(--text-secondary);
     line-height: 1.6;
