@@ -1,6 +1,11 @@
 /* ==========================================================================
    1. GLOBAL RESETS & VARIABLES
    ========================================================================== */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -306,6 +311,21 @@ body {
     letter-spacing: 2px;
     margin-bottom: 1.5rem; /* Reduced manually from 2.5rem */
     color: var(--text-secondary);
+}
+
+.project-header h1,
+.project-header .subtitle,
+.project-description .description-inner,
+.user-research-grid,
+.expertise-container {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
+    position: relative;
+    z-index: 10;
 }
 
 .project-grid {
@@ -1109,19 +1129,14 @@ body {
 }
 
 /* 1. MAIN INTRO WIDTH (Title, Subtitle, Paragraph, Metadata, Expertise) */
-.project-header h1,
-.project-header .subtitle,
-.project-description .description-inner,
-.user-research-grid,
-.expertise-container {
-    max-width: 1600px;           /* ALIGNED WITH PROJECT GRID */
-    margin-left: auto;
-    margin-right: auto;
+.navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding-left: var(--side-padding);
-    padding-right: var(--side-padding);
-    position: relative;
-    z-index: 10;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem var(--side-padding);
 }
 
 /* 2. PROCESS SECTION WIDTH (Technical Blocks: Images and Text) */
@@ -1326,7 +1341,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    min-width: max-content; /* Prevents the metadata column from shrinking and wrapping */
+    max-width: 400px; /* Prevents column from getting too wide */
 }
 
 .detail-item h3 {
