@@ -877,7 +877,6 @@ body {
     padding: 2rem 0; /* Reduced padding from 4rem */
     border-top: 1px solid var(--border-color);
     background-color: var(--bg-color);
-    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -948,12 +947,29 @@ body {
     margin-bottom: 0;
 }
 
-.technical-block img {
-    max-height: 55vh; /* Scale visuals to fit within viewport */
-    width: auto;
+.technical-block .narrow-container {
+    max-width: 1600px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+}
+
+.technical-block .description-text,
+.technical-block .gallery-item-full,
+.technical-block .gallery-caption {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.technical-block img {
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    margin: 0;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 /* Restored narrow-container functionality to align content */
@@ -972,11 +988,17 @@ body {
 
 .project-hero-image {
     width: 100%;
-    height: 100vh;
-    margin-top: -70px;
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-top: 0;
     overflow: hidden;
     background-color: #ededed;
+}
+
+@media (max-aspect-ratio: 16/10) {
+    .project-hero-image {
+        aspect-ratio: 16 / 10;
+    }
 }
 
 .project-hero-image img,
@@ -988,7 +1010,7 @@ body {
 
 .project-header {
     width: 100%;
-    margin: 0;
+    margin-top: -40px; /* Overlap hero image to show rounded corners */
     padding: 3rem 0 0;
     text-align: left;
     background-color: var(--bg-color);
@@ -1013,7 +1035,7 @@ body {
 .context-block {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 6rem var(--side-padding);
+    padding: 4rem var(--side-padding) 6rem; /* Reduced top padding from 6rem */
 }
 
 .context-header {
@@ -1190,27 +1212,99 @@ body {
 .project-description {
     width: 100%;
     margin: 0;
-    padding: 1rem 0 8rem;
+    padding: 1rem 0 0; /* Removed bottom padding entirely */
     position: relative;
     background-color: var(--bg-color);
 }
 
 .description-inner {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 4rem;
-    align-items: start;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start;
 }
 
 .description-text {
-    flex: 1 1 600px; /* Reduced from 800px to wrap earlier */
-    max-width: none;
+    width: 100%;
+    max-width: 1300px;
 }
 
-.description-details {
-    flex: 0 0 auto;
+/* ---------------------------------------------------------
+   PROJECT INTRO & METADATA STYLING (APPLE-STYLE)
+   --------------------------------------------------------- */
+.intro-section-dark {
+    background-color: transparent; /* Remove global dark background from description area */
+    width: 100%;
+    padding: 2rem 0 0; /* Removed bottom padding */
+    position: relative;
+    z-index: 10;
 }
+
+.intro-section-dark .project-description {
+    background-color: transparent;
+}
+
+.intro-section-dark .description-text p {
+    color: var(--text-secondary); /* Description back to default gray */
+}
+
+/* Metadata Card (Clean Horizontal List) */
+.description-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+    gap: 2rem;
+    background: transparent;
+    padding: 2rem 0;
+    margin-top: 0; /* Gap killed */
+}
+
+.detail-item {
+    flex: 1;
+}
+
+.detail-item p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    gap: 0.25rem;
+}
+
+.detail-item p strong {
+    display: block;
+    width: auto;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+/* Metadata Divider */
+.metadata-divider {
+    width: 100%;
+    max-width: 1600px;
+    height: 1px;
+    background-color: #E4E4E7;
+    margin: 48px auto;
+}
+
+/* Responsive Metadata Row */
+@media (max-width: 1100px) {
+    .description-details {
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 1.5rem;
+    }
+}
+
+
+
 
 
 .description-text p {
@@ -1334,33 +1428,6 @@ body {
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
-}
-
-.description-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-width: 400px; /* Prevents column from getting too wide */
-}
-
-.detail-item h3 {
-    display: none; /* Hide old labels if they exist */
-}
-
-.detail-item p {
-    display: flex;
-    align-items: baseline;
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.detail-item p strong {
-    display: inline-block;
-    width: 140px;          /* Fixed width for labels to create uniform column alignment */
-    font-weight: 500;
-    color: var(--text-primary);
-    flex-shrink: 0;        /* Prevents the label itself from shrinking */
 }
 
 .project-gallery {
@@ -1700,8 +1767,8 @@ body {
        PROJECT PAGE: LAYOUT & GALLERIES
        --------------------------------------------------------- */
     .project-header {
-        padding-top: 1.5rem;         /* Space between Hero Image and Title */
-        margin-top: 0;
+        padding-top: 1.5rem;
+        margin-top: -30px; /* Overlap on mobile */
         border-radius: 30px 30px 0 0;
     }
 
@@ -1731,9 +1798,14 @@ body {
         padding-right: var(--side-padding) !important;
     }
     .project-hero-image {
-        height: 100vh;
-        margin-top: -70px;
-        aspect-ratio: auto;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin-top: 0;
+    }
+    @media (max-aspect-ratio: 16/10) {
+        .project-hero-image {
+            aspect-ratio: 16 / 10;
+        }
     }
     .project-description {
         padding-bottom: 3rem;      /* Use padding instead of margin */
@@ -1754,14 +1826,14 @@ body {
     width: 100%;
     background-color: var(--bg-color);
     padding: 2rem var(--side-padding);
-    text-align: center;
+    text-align: left;
     position: relative;
     z-index: 10;
 }
 
 .objective-inner {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1300px; /* Matched to context-block width */
+    margin: 0 auto;    /* Centers the block, but internal text is left-aligned */
 }
 
 .objective-section h2 {
