@@ -311,29 +311,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. Swipe Navigation for Project Pages
+    // 9. Swipe Navigation & Next Project Card for Project Pages
     if (document.body.classList.contains('project-page')) {
-        const projects = [
-            'Product/dune.html',
-            'Product/lifeaid.html',
-            'Product/revvo.html',
-            'Furniture/boghylde.html',
-            'Furniture/cove.html',
-            'Furniture/panel.html',
-            'Product/deskscape.html',
-            'Product/weeding-fork.html',
-            'Product/jet.html',
-            'Product/verge.html',
-            'Product/swirl.html'
+        const projectData = [
+            { path: 'Product/dune.html', nextPath: '../Product/lifeaid.html', nextTitle: 'LifeAID', nextImg: '../assets/Lifeaid/lifeaid landscape 3.jpg' },
+            { path: 'Product/lifeaid.html', nextPath: '../Product/revvo.html', nextTitle: 'Revvo', nextImg: '../assets/Revvo/REVO FINDAL RENDER.bip.63 (1).jpg' },
+            { path: 'Product/revvo.html', nextPath: '../Furniture/boghylde.html', nextTitle: 'Boghylde', nextImg: '../assets/Boghylde/boghylde_natural_photoshoot1.png' },
+            { path: 'Furniture/boghylde.html', nextPath: '../Furniture/cove.html', nextTitle: 'Cove', nextImg: '../assets/Cove/Cove Lounge Chair Hotel Render.jpeg' },
+            { path: 'Furniture/cove.html', nextPath: '../Furniture/panel.html', nextTitle: 'Panel', nextImg: '../assets/Panel/panel chair render v3.png' },
+            { path: 'Furniture/panel.html', nextPath: '../Product/deskscape.html', nextTitle: 'Deskscape', nextImg: '../assets/Deskscape/Deskscape Hero.png' },
+            { path: 'Product/deskscape.html', nextPath: '../Product/weeding-fork.html', nextTitle: 'Weeding Fork', nextImg: '../assets/Weeding Fork/Lululemon weeding fork hero.png' },
+            { path: 'Product/weeding-fork.html', nextPath: '../Product/jet.html', nextTitle: 'Jet', nextImg: '../assets/Jet/IMG_3646.jpg' },
+            { path: 'Product/jet.html', nextPath: '../Product/verge.html', nextTitle: 'Verge', nextImg: '../assets/Verge/Verge Wallet Photo.png' },
+            { path: 'Product/verge.html', nextPath: '../Product/swirl.html', nextTitle: 'Swirl', nextImg: '../assets/Swirl/Swirl Portrait Hero.jpeg' },
+            { path: 'Product/swirl.html', nextPath: '../Product/dune.html', nextTitle: 'Dune', nextImg: '../assets/Dune/speaker portfolio1 .jpg' }
         ];
 
-        // Determine current project path relative to root
         let currentPath = window.location.pathname;
-        // Normalize path: handle relative paths if opened locally
         if (currentPath.endsWith('/')) currentPath += 'index.html';
 
-        const currentProject = projects.find(p => currentPath.includes(p));
-        const currentIndex = projects.indexOf(currentProject);
+        const currentProj = projectData.find(p => currentPath.includes(p.path));
+        const currentIndex = projectData.findIndex(p => currentPath.includes(p.path));
+
+        // Inject Next Project Card in Metadata Section
+        if (currentProj) {
+            const descDetails = document.querySelector('.description-details');
+            if (descDetails) {
+                let metaGroup = descDetails.querySelector('.meta-items-group');
+                if (!metaGroup) {
+                    metaGroup = document.createElement('div');
+                    metaGroup.className = 'meta-items-group';
+                    const detailItems = Array.from(descDetails.querySelectorAll('.detail-item'));
+                    detailItems.forEach(item => metaGroup.appendChild(item));
+                    descDetails.insertBefore(metaGroup, descDetails.firstChild);
+                }
+
+                if (!descDetails.querySelector('.next-project-card')) {
+                    const nextCard = document.createElement('a');
+                    nextCard.href = currentProj.nextPath;
+                    nextCard.className = 'next-project-card';
+                    nextCard.setAttribute('aria-label', `Next Project: ${currentProj.nextTitle}`);
+                    nextCard.innerHTML = `
+                        <div class="next-project-bg">
+                            <img src="${currentProj.nextImg}" alt="${currentProj.nextTitle}">
+                            <div class="next-project-overlay"></div>
+                        </div>
+                        <div class="next-project-content">
+                            <div class="next-project-circle">
+                                <span>Next</span>
+                            </div>
+                        </div>
+                    `;
+                    descDetails.appendChild(nextCard);
+                }
+            }
+        }
 
         let touchStartX = 0;
         let touchEndX = 0;
@@ -343,12 +375,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const diff = touchStartX - touchEndX;
 
             if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0 && currentIndex < projects.length - 1) {
-                    // Swipe Left -> Next Project
-                    navigateToProject(projects[currentIndex + 1]);
+                if (diff > 0 && currentIndex !== -1 && currentIndex < projectData.length - 1) {
+                    navigateToProject(projectData[currentIndex + 1].path);
                 } else if (diff < 0 && currentIndex > 0) {
-                    // Swipe Right -> Previous Project
-                    navigateToProject(projects[currentIndex - 1]);
+                    navigateToProject(projectData[currentIndex - 1].path);
                 }
             }
         }
@@ -356,14 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function navigateToProject(target) {
             document.body.classList.add('page-exit');
             setTimeout(() => {
-                // Adjust path based on current subdirectory depth
-                const depth = (currentPath.match(/\//g) || []).length;
-                let prefix = depth > 1 ? '../' : '';
-                // If we are already in a subdirectory and the target is in a subdirectory,
-                // we might need to go up one then down.
-                // Simple fix: if current is in folder and target has folder, use root-relative if possible
-                // or just construct the path.
-                // Given the structure, ../target should work from Product/ or Furniture/
                 window.location.href = '../' + target;
             }, 600);
         }
